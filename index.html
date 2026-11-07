@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Harshini ✨💖</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Cormorant+Garamond:ital,wght@0,500;0,700;1,600&family=Outfit:wght@400;600;800&family=Shrikhand&display=swap" rel="stylesheet">
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        popPink: '#ff7ebb',
+                        hotMagenta: '#ff2a8d',
+                        softBlush: '#fff0f6',
+                        roseGold: '#e8a598',
+                        dreamLilac: '#e5cfff',
+                        glamGold: '#ffd700',
+                    },
+                    fontFamily: {
+                        shrikhand: ['Shrikhand', 'cursive'],
+                        cormorant: ['Cormorant Garamond', 'serif'],
+                        caveat: ['Caveat', 'cursive'],
+                        outfit: ['Outfit', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulseGlow 2s infinite alternate',
+                        'sparkle-spin': 'spin 12s linear infinite',
+                        'shimmer': 'shimmer 2.5s infinite linear',
+                        'bounce-subtle': 'bounceSubtle 2s infinite ease-in-out',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-15px) rotate(3deg)' },
+                        },
+                        pulseGlow: {
+                            '0%': { boxShadow: '0 0 15px rgba(255, 42, 141, 0.4), inset 0 0 15px rgba(255, 255, 255, 0.6)' },
+                            '100%': { boxShadow: '0 0 35px rgba(255, 42, 141, 0.8), inset 0 0 25px rgba(255, 255, 255, 0.9)' },
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-200% 0' },
+                            '100%': { backgroundPosition: '200% 0' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom Styles & Overengineered Visual Effects */
+        body {
+            background: linear-gradient(135deg, #ffd6e8 0%, #fff0f5 35%, #e8d5ff 70%, #ffc2eb 100%);
+            background-size: 300% 300%;
+            animation: gradientBg 15s ease infinite;
+            overflow-x: hidden;
+            font-family: 'Outfit', sans-serif;
+            user-select: none;
+        }
+
+        @keyframes gradientBg {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Coquette Extra Sparkle Mode Shimmer */
+        body.glitter-mode::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.8) 1px, transparent 1px), radial-gradient(rgba(255, 105, 180, 0.5) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+            pointer-events: none;
+            z-index: 99;
+            animation: glitterSparkle 3s linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes glitterSparkle {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-40px); }
+        }
+
+        /* Custom Glassmorphism */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 20px 50px rgba(255, 105, 180, 0.25), inset 0 0 20px rgba(255, 255, 255, 0.8);
+        }
+
+        .glass-ribbon {
+            background: linear-gradient(135deg, #ff4097, #ff85c0);
+            box-shadow: 0 4px 15px rgba(255, 42, 141, 0.4);
+        }
+
+        /* Text Shimmer Effect */
+        .text-shimmer {
+            background: linear-gradient(90deg, #ff2a8d, #ff94c9, #ffd700, #ff2a8d);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shimmer 4s linear infinite;
+        }
+
+        /* Interactive Envelope Styles */
+        .envelope-wrapper {
+            perspective: 1000px;
+        }
+
+        .envelope {
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .flap {
+            transform-origin: top center;
+            transition: transform 0.6s ease-in-out;
+            z-index: 20;
+        }
+
+        .envelope.open .flap {
+            transform: rotateX(180deg);
+            z-index: 5;
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 240, 246, 0.6);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ff7ebb;
+            border-radius: 999px;
+        }
+
+        /* Sparkle Trail Canvas */
+        #particleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Decorative Floating Bows */
+        .floating-bow {
+            position: absolute;
+            pointer-events: none;
+            filter: drop-shadow(0 4px 8px rgba(255, 42, 141, 0.3));
+        }
+
+        /* Envelope seal pulse */
+        .wax-seal {
+            background: radial-gradient(circle, #ff5eb2 0%, #ff1a75 70%, #d60052 100%);
+            box-shadow: 0 4px 15px rgba(214, 0, 82, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.6);
+        }
+		#audioOverlay {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    z-index: 999999;
+    cursor: default;
+	display:flex;
+	justify-content: center;
+    align-items: center;
+}
+
+
+.polaroid-image {
+    opacity: 1;
+    transform: scale(1);
+    transition:
+        opacity 0.6s ease,
+        transform 0.8s ease;
+}
+
+.polaroid-image.changing {
+    opacity: 0;
+    transform: scale(1.08);
+}
+
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-between relative p-3 sm:p-6 transition-all duration-500">
+<div id="audioOverlay">Click anywhere to load</div>
+    <!-- Interactive Particle & Sparkle Canvas Background -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- Top Floating Decorative Elements -->
+    <div class="fixed top-4 left-4 z-50 flex gap-2">
+        <button id="glitterToggleBtn" class="hidden glass-card px-4 py-2 rounded-full text-xs sm:text-sm font-semibold text-hotMagenta flex items-center gap-2 hover:scale-105 active:scale-95 transition-all shadow-md">
+            <i class="fa-solid fa-wand-magic-sparkles text-glamGold"></i>
+            <span id="glitterText">Coquette Mode: OFF</span>
+        </button>
+    </div>
+
+    <!-- Main Container -->
+    <div class="relative z-10 w-full max-w-4xl mx-auto flex flex-col items-center justify-center my-auto py-8">
+
+        <!-- STEP 1: UNBOXING ENVELOPE STAGE -->
+        <div id="unboxingStage" class="w-full flex flex-col items-center justify-center transition-all duration-700">
+            <div class="text-center mb-6 animate-float">
+                <span class="inline-block px-4 py-1.5 rounded-full bg-white/70 backdrop-blur-md text-hotMagenta text-xs font-bold uppercase tracking-widest border border-popPink/30 mb-2 shadow-sm">
+                    ✨ Special Delivery For A Special Soul ✨
+                </span>
+                <h1 class="font-shrikhand text-4xl sm:text-6xl text-hotMagenta drop-shadow-sm tracking-wide">
+                    Make A Wish! 🎀
+                </h1>
+                <p class="font-caveat text-2xl sm:text-3xl text-popPink font-bold mt-1">Tap the wax seal to open your card</p>
+            </div>
+
+            <!-- Envelope Component -->
+            <div class="envelope-wrapper w-full max-w-md px-4 cursor-pointer group" id="envelopeContainer">
+                <div id="envelope" class="envelope glass-card rounded-2xl relative w-full h-72 sm:h-80 flex flex-col justify-end items-center overflow-hidden border-2 border-white shadow-2xl">
+                    
+                    <!-- Envelope Top Flap (Triangular) -->
+                    <div id="envelopeFlap" class="flap absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-white/90 to-popPink/20 border-b border-white/60 flex items-start justify-center pt-2" style="clip-path: polygon(0 0, 100% 0, 50% 100%);">
+                        <div class="w-full h-full bg-gradient-to-b from-pink-100/80 to-pink-200/50"></div>
+                    </div>
+
+                    <!-- Envelope Pocket (Bottom overlay) -->
+                    <div class="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-pink-200/90 via-pink-100/80 to-white/40 z-10 border-t border-white/80" style="clip-path: polygon(0 100%, 0 0, 50% 35%, 100% 0, 100% 100%);"></div>
+
+                    <!-- Decorative Ribbon on Envelope -->
+                    <div class="absolute inset-0 flex items-center justify-center z-15 pointer-events-none">
+                        <div class="w-full h-10 bg-gradient-to-r from-popPink/30 via-hotMagenta/40 to-popPink/30 backdrop-blur-xs flex items-center justify-center">
+                            <div class="w-full h-0.5 bg-white/60"></div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Wax Seal Pull Button -->
+                    <div id="waxSeal" class="wax-seal z-30 w-20 h-20 sm:w-24 sm:h-24 rounded-full flex flex-col items-center justify-center text-white cursor-pointer transform group-hover:scale-110 transition-all duration-300 shadow-xl border-2 border-yellow-200 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                        <i class="fa-solid fa-heart text-2xl sm:text-3xl text-pink-100 animate-pulse"></i>
+                        <span class="text-[10px] font-bold uppercase tracking-wider mt-1 text-yellow-100">Open Me</span>
+                    </div>
+
+                    <!-- Peeking Card Preview Inside -->
+                    <div class="absolute bottom-4 z-0 w-11/12 h-44 bg-white rounded-t-xl shadow-md p-4 text-center transform translate-y-6 transition-transform duration-500 group-hover:translate-y-2 flex flex-col items-center justify-center">
+                        <span class="font-caveat text-xl text-hotMagenta">A very special message from Hrishika... 💖</span>
+                    </div>
+
+                </div>
+            </div>
+            
+            <p class="text-xs text-popPink/80 mt-6 font-semibold flex items-center gap-1">
+                <i class="fa-solid fa-sparkles"></i> Crafted with endless love & sparkle <i class="fa-solid fa-sparkles"></i>
+            </p>
+        </div>
+
+
+        <!-- STEP 2: MAIN BIRTHDAY CARD (Revealed after unboxing) -->
+        <div id="mainCardStage" class="hidden w-full transition-all duration-1000 opacity-0 transform scale-95">
+            
+            <!-- Floating Coquette Decorative Bows -->
+            <svg class="floating-bow top-0 -left-6 w-16 sm:w-24 text-popPink animate-float" viewBox="0 0 100 100" fill="currentColor">
+                <path d="M50,50 C30,20 0,30 10,55 C20,80 45,60 50,55 C55,60 80,80 90,55 C100,30 70,20 50,50 Z" opacity="0.8"/>
+                <circle cx="50" cy="52" r="7" fill="#ff2a8d"/>
+            </svg>
+            <svg class="floating-bow -top-8 -right-6 w-20 sm:w-28 text-hotMagenta animate-float" style="animation-delay: 1.5s;" viewBox="0 0 100 100" fill="currentColor">
+                <path d="M50,50 C30,20 0,30 10,55 C20,80 45,60 50,55 C55,60 80,80 90,55 C100,30 70,20 50,50 Z" opacity="0.85"/>
+                <circle cx="50" cy="52" r="7" fill="#ffd700"/>
+            </svg>
+
+            <!-- 3D Interactive Tilt Card -->
+            <div id="card3DContainer" class="w-full glass-card rounded-3xl p-6 sm:p-10 md:p-14 relative overflow-hidden transition-all duration-200 border-4 border-white/80 shadow-2xl">
+                
+                <!-- Inner Decorative Border Ribbon -->
+                <div class="absolute inset-3 border-2 border-dashed border-popPink/40 rounded-2xl pointer-events-none"></div>
+                <div class="absolute top-4 left-4 text-popPink/40 text-xl"><i class="fa-solid fa-heart"></i></div>
+                <div class="absolute top-4 right-4 text-popPink/40 text-xl"><i class="fa-solid fa-star"></i></div>
+                <div class="absolute bottom-4 left-4 text-popPink/40 text-xl"><i class="fa-solid fa-sparkles"></i></div>
+                <div class="absolute bottom-4 right-4 text-popPink/40 text-xl"><i class="fa-solid fa-ribbon"></i></div>
+
+                <!-- Header Section -->
+                <div class="text-center mb-8 sm:mb-12 relative z-10">
+                    <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-pink-100/80 border border-popPink/40 text-hotMagenta text-xs font-extrabold uppercase tracking-widest mb-3 shadow-inner">
+                        <i class="fa-solid fa-crown text-glamGold"></i> Queen of The Day <i class="fa-solid fa-crown text-glamGold"></i>
+                    </div>
+                    <h1 class="font-shrikhand text-4xl sm:text-6xl md:text-7xl text-shimmer tracking-wide mb-2 leading-tight">
+                        Happy Birthday! 
+                    </h1>🎉✨
+                    <p class="font-caveat text-2xl sm:text-4xl text-hotMagenta font-bold">
+                        To the sweetest, brightest soul in the universe 💕
+                    </p>
+                </div>
+
+                <!-- Main Content Body (Formatted User Text) -->
+                <div class="space-y-6 sm:space-y-8 text-gray-800 text-base sm:text-lg leading-relaxed relative z-10 font-outfit">
+                    
+                    <!-- Paragraph 1 -->
+                    <div class="p-5 sm:p-6 rounded-2xl bg-white/70 backdrop-blur-md border border-white/90 shadow-sm relative group hover:bg-white/90 transition-all">
+                        <span class="absolute -top-3 left-6 bg-hotMagenta text-white text-xs font-bold px-3 py-0.5 rounded-full shadow-md">
+                            ✨ Pure Magic
+                        </span>
+                        <p class="text-gray-700 leading-relaxed pt-1">
+                            To know a human being like you makes me realise how much of life we spend being significant, because the way you hold the most mundane little things and beauties about the world are often mistaken for mundane. You have a vision for this world that could remove most of the pain, and the vains. The bad would perish if the world knew that someone could hold so much warmth, light and joy despite what they've painted the world in. Your colours are the most vibrant when you paint this world a picture where you're the central event.
+                        </p>
+                    </div>
+
+                    <!-- Highlight Quote Block 1 (Paragraph 2) -->
+                    <div class="relative p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-pink-500/10 via-purple-500/10 to-pink-500/10 border-l-4 border-hotMagenta backdrop-blur-md shadow-inner text-center my-6">
+                        <i class="fa-solid fa-quote-left text-popPink/30 text-4xl absolute top-3 left-4"></i>
+                        <p class="font-cormorant italic text-2xl sm:text-3xl text-hotMagenta font-semibold relative z-10 px-4">
+                            "You're the most lovely, the love I didn’t even know could exist, exists with such ease that one can almost accidentally forget how hard it is to break and carry."
+                        </p>
+                        <i class="fa-solid fa-quote-right text-popPink/30 text-4xl absolute bottom-3 right-4"></i>
+                    </div>
+
+                    <!-- Paragraph 3 -->
+                    <div class="p-5 sm:p-6 rounded-2xl bg-white/70 backdrop-blur-md border border-white/90 shadow-sm relative group hover:bg-white/90 transition-all">
+                        <span class="absolute -top-3 left-6 bg-popPink text-white text-xs font-bold px-3 py-0.5 rounded-full shadow-md">
+                            🌈 Rainbow Soul
+                        </span>
+                        <p class="text-gray-700 leading-relaxed pt-1">
+                            I've seen the world with my eyes, but looking at it from yours made me realise how colourblind I was, meanwhile you have the soul to carry rainbows everywhere.
+                        </p>
+                    </div>
+
+                    <!-- Closing Grand Affirmation (Paragraph 4) -->
+                    <div class="p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-pink-100/90 to-purple-100/90 border-2 border-popPink/40 shadow-md text-center relative overflow-hidden">
+                        <div class="absolute -right-8 -bottom-8 w-24 h-24 bg-popPink/20 rounded-full blur-xl pointer-events-none"></div>
+                        <h3 class="font-caveat text-3xl sm:text-4xl text-hotMagenta font-bold mb-3">Never Stop Glowing 🌟</h3>
+                        <p class="font-outfit font-medium text-gray-800 text-lg sm:text-xl leading-relaxed">
+                            You are the most smart, intelligent, sharp, witty, funny, charming, caring, nurturing and beautiful souls and minds out there and I hope you never lose yourself to the calms of the world.
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- Interactive Polaroid / Photo Frame Grid Section -->
+                <div class="mt-12 pt-8 border-t border-popPink/30 relative z-10">
+                    <h4 class="text-center font-shrikhand text-2xl text-hotMagenta mb-6 tracking-wide flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-camera-retro text-popPink"></i> Snaps Of Sunshine
+                    </h4>
+                    
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-6 h-100">
+
+    <!-- Polaroid 1 -->
+    <div class="polaroid bg-white p-3 pb-6 rounded-lg shadow-lg transform -rotate-3 hover:rotate-0 hover:scale-105 transition-all duration-300 border border-gray-100 cursor-pointer text-center group">
+        <div class="h-44 rounded overflow-hidden relative">
+            <img src="./1.jpeg"
+                 class="polaroid-image w-full h-full object-cover"
+                 alt="Memory 1">
+            <span class="absolute bottom-2 right-2 text-xs bg-white/80 px-2 py-0.5 rounded-full font-bold text-popPink">
+                Make A Wish
+            </span>
+        </div>
+        <p class="font-caveat text-xl text-gray-700 font-bold mt-3">
+            Pure Magic ✨
+        </p>
+    </div>
+
+    <!-- Polaroid 2 -->
+    <div class="polaroid bg-white p-3 pb-6 rounded-lg shadow-lg transform rotate-2 hover:rotate-0 hover:scale-105 transition-all duration-300 border border-gray-100 cursor-pointer text-center group">
+        <div class="h-44 rounded overflow-hidden relative">
+            <img src="./2.jpeg"
+                 class="polaroid-image w-full h-full object-cover"
+                 alt="Memory 2">
+            <span class="absolute bottom-2 right-2 text-xs bg-white/80 px-2 py-0.5 rounded-full font-bold text-popPink">
+                Main Character
+            </span>
+        </div>
+        <p class="font-caveat text-xl text-gray-700 font-bold mt-3">
+            Vibrant Colors 🎨
+        </p>
+    </div>
+
+    <!-- Polaroid 3 -->
+    <div class="polaroid bg-white p-3 pb-6 rounded-lg shadow-lg transform -rotate-2 hover:rotate-0 hover:scale-105 transition-all duration-300 border border-gray-100 cursor-pointer text-center group">
+        <div class="h-44 rounded overflow-hidden relative">
+            <img src="./3.jpeg"
+                 class="polaroid-image w-full h-full object-cover"
+                 alt="Memory 3">
+            <span class="absolute bottom-2 right-2 text-xs bg-white/80 px-2 py-0.5 rounded-full font-bold text-popPink">
+                Forever Loved
+            </span>
+        </div>
+        <p class="font-caveat text-xl text-gray-700 font-bold mt-3">
+            Rainbow Soul 🌈
+        </p>
+    </div>
+
+</div>
+
+                </div>
+
+                <!-- Interactive Action Toolbar -->
+                <div class="mt-12 flex flex-wrap items-center justify-center gap-4 relative z-10">
+                    <button id="confettiBtn" class="px-6 py-3.5 rounded-full bg-gradient-to-r from-hotMagenta to-popPink text-white font-bold text-base shadow-lg hover:shadow-pink-500/50 hover:scale-105 active:scale-95 transition-all flex items-center gap-2 border border-white/40">
+                        <i class="fa-solid fa-wand-magic"></i> Burst Extra Confetti! 🎉
+                    </button>
+                    
+                    <button id="replayBtn" class="px-6 py-3.5 rounded-full bg-white/80 backdrop-blur-md text-hotMagenta font-bold text-base shadow-md hover:bg-white hover:scale-105 active:scale-95 transition-all flex items-center gap-2 border border-popPink/40">
+                        <i class="fa-solid fa-rotate-left"></i> Re-pack Envelope 🎀
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer Tagline -->
+    <footer class="relative z-10 py-4 text-center text-xs font-semibold text-hotMagenta/70">
+        Created for the most extraordinary human being ✨ 💕
+    </footer>
+
+    <!-- Canvas Particle Logic & Audio Interactions -->
+    <script>
+        // --- HTML5 Audio Logic ---
+        let introAudio = new Audio('./intro.mp3');
+        let songAudio = new Audio('./song.mp3');
+        
+        introAudio.loop = true;
+        songAudio.loop = true;
+
+        let fadeInterval = null;
+
+        function playIntro() {
+            // Stop any ongoing fade intervals and reset song volume/playback
+            if (fadeInterval) clearInterval(fadeInterval);
+            songAudio.pause();
+            songAudio.currentTime = 0;
+
+            introAudio.volume = 1;
+            introAudio.currentTime = 0;
+
+            // Play intro (handle browser autoplay restrictions on DOM content loaded)
+            const playPromise = introAudio.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(() => {
+                    const enableAutoplay = () => {
+                        introAudio.play();
+                        document.removeEventListener('click', enableAutoplay);
+                        document.removeEventListener('touchstart', enableAutoplay);
+                    };
+                    document.addEventListener('click', enableAutoplay);
+                    document.addEventListener('touchstart', enableAutoplay);
+                });
+            }
+        }
+
+        function fadeOutIntro(callback) {
+            if (fadeInterval) clearInterval(fadeInterval);
+            fadeInterval = setInterval(() => {
+                if (introAudio.volume > 0.05) {
+                    introAudio.volume = Math.max(0, introAudio.volume - 0.05);
+                } else {
+                    introAudio.volume = 0;
+                    introAudio.pause();
+                    clearInterval(fadeInterval);
+                    if (callback) callback();
+                }
+            }, 50);
+        }
+
+        function playSong() {
+            fadeOutIntro(() => {
+                songAudio.volume = 0;
+                songAudio.currentTime = 0;
+                songAudio.play().catch(e => console.log('Song playback error:', e));
+
+                // Fade in song audio
+                let fadeInInterval = setInterval(() => {
+                    if (songAudio.volume < 0.95) {
+                        songAudio.volume = Math.min(1, songAudio.volume + 0.05);
+                    } else {
+                        songAudio.volume = 1;
+                        clearInterval(fadeInInterval);
+                    }
+                }, 50);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+    const overlay = document.getElementById('audioOverlay');
+	
+	loopImages();
+
+    overlay.addEventListener('click', () => {
+        playIntro();
+
+        // Remove overlay immediately
+        overlay.remove();
+    }, { once: true });
+	
+});
+
+function shuffle(array) {
+  let currentIndex = array.length;
+
+  // While there remain elements to shuffle...
+  while (currentIndex != 0) {
+
+    // Pick a remaining element...
+    let randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+}
+
+function loopImages() {
+const images = Array.from(
+        { length: 7 },
+        (_, i) => `./${i + 1}.jpeg`
+    );
+	
+	
+
+    const polaroids = document.querySelectorAll(".polaroid");
+
+    polaroids.forEach((polaroid, index) => {
+
+        const img = polaroid.querySelector(".polaroid-image");
+
+        // Start each card at a different image
+        let currentIndex = index + 3;
+
+        // Different interval for each Polaroid
+        const interval = 3500 + (index * 1200);
+
+        setInterval(() => {
+
+            // Begin fade-out
+            img.classList.add("changing");
+
+            setTimeout(() => {
+
+                // Move to next image
+                currentIndex = (currentIndex + 3) % images.length;
+
+                img.src = images[currentIndex];
+
+                // Wait for image to load before fading in
+                img.onload = () => {
+                    img.classList.remove("changing");
+                };
+
+                // Handle cached images
+                if (img.complete) {
+                    img.classList.remove("changing");
+                }
+
+            }, 600);
+
+        }, interval);
+
+    });
+}
+
+        // --- Sparkle & Particle System Canvas ---
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let mouseX = 0;
+        let mouseY = 0;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor(x, y, isMouseTrail = false) {
+                this.x = x || Math.random() * canvas.width;
+                this.y = y || Math.random() * canvas.height;
+                this.isMouseTrail = isMouseTrail;
+                this.size = isMouseTrail ? Math.random() * 6 + 3 : Math.random() * 4 + 1;
+                this.speedX = isMouseTrail ? (Math.random() - 0.5) * 3 : (Math.random() - 0.5) * 0.8;
+                this.speedY = isMouseTrail ? (Math.random() - 0.5) * 3 : -Math.random() * 1 - 0.2;
+                this.color = ['#ff7ebb', '#ff2a8d', '#ffd700', '#e5cfff', '#ffffff'][Math.floor(Math.random() * 5)];
+                this.life = isMouseTrail ? 1 : Math.random() * 0.8 + 0.2;
+                this.decay = isMouseTrail ? 0.02 : 0.003;
+                this.shape = Math.random() > 0.5 ? 'heart' : 'star';
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.life -= this.decay;
+
+                if (this.life <= 0 && !this.isMouseTrail) {
+                    this.life = 1;
+                    this.x = Math.random() * canvas.width;
+                    this.y = canvas.height + 10;
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = Math.max(0, this.life);
+                ctx.fillStyle = this.color;
+                ctx.strokeStyle = this.color;
+
+                if (this.shape === 'heart') {
+                    // Draw mini heart
+                    ctx.beginPath();
+                    const topCurveHeight = this.size * 0.3;
+                    ctx.moveTo(this.x, this.y + topCurveHeight);
+                    ctx.bezierCurveTo(this.x, this.y, this.x - this.size / 2, this.y, this.x - this.size / 2, this.y + topCurveHeight);
+                    ctx.bezierCurveTo(this.x - this.size / 2, this.y + (this.size + topCurveHeight) / 2, this.x, this.y + this.size, this.x, this.y + this.size);
+                    ctx.bezierCurveTo(this.x, this.y + (this.size + topCurveHeight) / 2, this.x + this.size / 2, this.y + topCurveHeight, this.x + this.size / 2, this.y + topCurveHeight);
+                    ctx.bezierCurveTo(this.x + this.size / 2, this.y, this.x, this.y, this.x, this.y + topCurveHeight);
+                    ctx.fill();
+                } else {
+                    // Draw Star/Sparkle
+                    ctx.beginPath();
+                    for (let i = 0; i < 5; i++) {
+                        ctx.lineTo(Math.cos((18 + i * 72) * Math.PI / 180) * this.size + this.x, -Math.sin((18 + i * 72) * Math.PI / 180) * this.size + this.y);
+                        ctx.lineTo(Math.cos((54 + i * 72) * Math.PI / 180) * (this.size / 2) + this.x, -Math.sin((54 + i * 72) * Math.PI / 180) * (this.size / 2) + this.y);
+                    }
+                    ctx.closePath();
+                    ctx.fill();
+                }
+                ctx.restore();
+            }
+        }
+
+        // Initialize Background Particles
+        for (let i = 0; i < 50; i++) {
+            particles.push(new Particle());
+        }
+
+        // Mouse Move Sparkle Trail
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            for (let i = 0; i < 2; i++) {
+                particles.push(new Particle(mouseX, mouseY, true));
+            }
+        });
+
+        // Touch Move Support
+        window.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) {
+                mouseX = e.touches[0].clientX;
+                mouseY = e.touches[0].clientY;
+                particles.push(new Particle(mouseX, mouseY, true));
+            }
+        });
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach((p, index) => {
+                p.update();
+                p.draw();
+                if (p.isMouseTrail && p.life <= 0) {
+                    particles.splice(index, 1);
+                }
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        // --- UI Interactions & Unboxing Sequence ---
+        const envelopeContainer = document.getElementById('envelopeContainer');
+        const envelope = document.getElementById('envelope');
+        const waxSeal = document.getElementById('waxSeal');
+        const unboxingStage = document.getElementById('unboxingStage');
+        const mainCardStage = document.getElementById('mainCardStage');
+        const confettiBtn = document.getElementById('confettiBtn');
+        const replayBtn = document.getElementById('replayBtn');
+        const glitterToggleBtn = document.getElementById('glitterToggleBtn');
+        const glitterText = document.getElementById('glitterText');
+
+        // Trigger Envelope Unboxing
+        function openCard() {
+            playSong();
+
+            // Trigger Initial Burst of Confetti
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#ff7ebb', '#ff2a8d', '#ffd700', '#ffffff']
+            });
+
+            envelope.classList.add('open');
+
+            // Delay for opening flap animation before transitioning stage
+            setTimeout(() => {
+                unboxingStage.classList.add('opacity-0', 'transform', 'scale-95');
+                setTimeout(() => {
+                    unboxingStage.classList.add('hidden');
+                    mainCardStage.classList.remove('hidden');
+                    
+                    // Smooth reveal of main card
+                    requestAnimationFrame(() => {
+                        mainCardStage.classList.remove('opacity-0', 'scale-95');
+                        mainCardStage.classList.add('opacity-100', 'scale-100');
+                    });
+
+                    // Grand Confetti Celebration
+                    fireGrandConfetti();
+                }, 500);
+            }, 700);
+        }
+
+        waxSeal.addEventListener('click', openCard);
+        envelopeContainer.addEventListener('click', (e) => {
+            if (!envelope.classList.contains('open')) {
+                openCard();
+            }
+        });
+
+        // Re-pack Envelope Button
+        replayBtn.addEventListener('click', () => {
+            playIntro();
+            mainCardStage.classList.add('opacity-0', 'scale-95');
+            setTimeout(() => {
+                mainCardStage.classList.add('hidden');
+                unboxingStage.classList.remove('hidden', 'opacity-0', 'scale-95');
+                envelope.classList.remove('open');
+            }, 500);
+        });
+
+        // Confetti Burst Handler
+        function fireGrandConfetti() {
+            const count = 200;
+            const defaults = {
+                origin: { y: 0.7 }
+            };
+
+            function fire(particleRatio, opts) {
+                confetti(Object.assign({}, defaults, opts, {
+                    particleCount: Math.floor(count * particleRatio)
+                }));
+            }
+
+            fire(0.25, {
+                spread: 26,
+                startVelocity: 55,
+                colors: ['#ff2a8d', '#ffd700']
+            });
+            fire(0.2, {
+                spread: 60,
+                colors: ['#ff7ebb', '#ffffff']
+            });
+            fire(0.35, {
+                spread: 100,
+                decay: 0.91,
+                scalar: 0.8
+            });
+            fire(0.1, {
+                spread: 120,
+                startVelocity: 25,
+                decay: 0.92,
+                colors: ['#e5cfff', '#ff2a8d']
+            });
+        }
+
+        confettiBtn.addEventListener('click', () => {
+            fireGrandConfetti();
+        });
+
+        // Toggle Coquette / Extra Glitter Mode
+        let glitterModeActive = false;
+        glitterToggleBtn.addEventListener('click', () => {
+            glitterModeActive = !glitterModeActive;
+            if (glitterModeActive) {
+                document.body.classList.add('glitter-mode');
+                glitterText.innerText = "Coquette Mode: ON ✨";
+                glitterToggleBtn.classList.add('border-hotMagenta', 'bg-pink-100');
+            } else {
+                document.body.classList.remove('glitter-mode');
+                glitterText.innerText = "Coquette Mode: OFF";
+                glitterToggleBtn.classList.remove('border-hotMagenta', 'bg-pink-100');
+            }
+        });
+
+        // --- 3D Parallax Tilt Effect for Main Card ---
+        const card3D = document.getElementById('card3DContainer');
+        
+        document.addEventListener('mousemove', (e) => {
+            if (mainCardStage.classList.contains('hidden')) return;
+
+            const rect = card3D.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+
+            const rotateX = (-y / rect.height) * 8; // Max tilt 8 deg
+            const rotateY = (x / rect.width) * 8;
+
+            card3D.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+        // Reset tilt on mouse leave
+        document.addEventListener('mouseleave', () => {
+            if (card3D) {
+                card3D.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
+            }
+        });
+
+        // Play confetti on photo polaroid clicks
+        document.querySelectorAll('.grid > div').forEach(card => {
+            card.addEventListener('click', () => {
+                confetti({
+                    particleCount: 30,
+                    spread: 50,
+                    origin: { y: 0.8 },
+                    colors: ['#ff7ebb', '#ffd700']
+                });
+            });
+        });
+    </script>
+</body>
+</html>
